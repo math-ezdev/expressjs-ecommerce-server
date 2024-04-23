@@ -1,9 +1,7 @@
-const createError = require("http-errors");
-const jwt = require("jsonwebtoken");
 const { UserModel } = require("../models/user");
 const { generateToken } = require("../middlewares/apiAuth");
 
-const register = async (req, res, next) => {
+const signUp = async (req, res, next) => {
   try {
     const user = req.validatedUser;
 
@@ -16,7 +14,7 @@ const register = async (req, res, next) => {
   }
 };
 
-const login = async (req, res, next) => {
+const signIn = async (req, res, next) => {
   try {
     const user = req.verifiedUser;
 
@@ -26,7 +24,7 @@ const login = async (req, res, next) => {
       true
     );
 
-    res.apiSuccess({ accessToken, refreshToken }, "Login successful.");
+    res.apiSuccess({ accessToken, refreshToken }, "signin successful.");
   } catch (error) {
      next(error);
   }
@@ -55,4 +53,4 @@ const logout = async (req, res, next) => {
   }
 };
 
-module.exports = { register, login, refreshToken, logout };
+module.exports = { signUp, signIn, refreshToken, logout };

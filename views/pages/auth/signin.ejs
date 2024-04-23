@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-<!-- Login 8 - Bootstrap Brain Component -->
+<!-- signin 8 - Bootstrap Brain Component -->
 <section class="bg-transparent p-3 p-md-4 p-xl-5">
   <div class="container">
     <div class="row justify-content-center">
@@ -38,7 +38,7 @@
                       <p class="text-center mt-4 mb-5">Or sign in with</p>
                     </div>
                   </div>
-                  <form action="<%= navigations.auth.login %>" method="post">
+                  <form action="<%= navigation.auth.signIn %>" method="post">
                     <div class="row gy-3 overflow-hidden">
                       <div class="col-12">
                         <div class="form-floating mb-3">
@@ -70,8 +70,8 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center mt-5">
-                        <a href="<%= navigations.auth.register %>" class="link-secondary text-decoration-none">Create new account</a>
-                        <a href="<%= navigations.auth.resetPassword %>" class="link-secondary text-decoration-none">Forgot password</a>
+                        <a href="<%= navigation.auth.signUp %>" class="link-secondary text-decoration-none">Create new account</a>
+                        <a href="<%= navigation.auth.resetPassword %>" class="link-secondary text-decoration-none">Forgot password</a>
                       </div>
                     </div>
                   </div>

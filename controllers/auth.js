@@ -1,48 +1,49 @@
-const loginPage = (req, res, next) => {
+
+const signInPage = (req, res, next) => {
   const locals = {
-    title: "Login",
+    title: "Sign in",
   };
   res.locals = locals;
-  res.render("pages/auth/login", { layout: "layouts/empty" });
+  res.render("pages/auth/signin", { layout: "layouts/empty" });
 };
 
-const registerPage = (req, res, next) => {
+const signUpPage = (req, res, next) => {
   const locals = {
-    title: "Register",
+    title: "Sign up",
   };
   res.locals = locals;
-  res.render("pages/auth/register", { layout: "layouts/empty" });
+  res.render("pages/auth/signup", { layout: "layouts/empty" });
 };
 
 const resetPasswordPage = (req, res, next) => {
   const locals = {
-    title: "Forget Password",
+    title: "Reset Password",
   };
   res.locals = locals;
   res.render("pages/auth/reset-password", { layout: "layouts/empty" });
 };
-
-const login = (req, res, next) => {};
-
-const register = (req, res, next) => {};
-
-const resetPassword = (req, res, next) => {};
 
 const logout = (req, res, next) => {
   req.logout((err) => {
     if (err) {
       return next(err);
     }
-    res.redirect("/"); 
+    res.redirect("/");
   });
 };
 
+const signIn = (req, res, next) => {};
+
+const signUp = (req, res, next) => {};
+
+const resetPassword = (req, res, next) => {};
+
 module.exports = {
-  loginPage,
-  registerPage,
+  signInPage,
+  signUpPage,
   resetPasswordPage,
-  login,
-  register,
+  signIn,
+  signUp,
   resetPassword,
   logout,
 };

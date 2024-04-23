@@ -1,3 +1,5 @@
+const { navigation } = require("../configs/navigation");
+
 const homePage = (req, res, next) => {
   const user = req.user
 

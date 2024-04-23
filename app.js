@@ -22,20 +22,13 @@ const authApi = require("./apis/auth.api");
 const testApi = require("./apis/test.api");
 const authRouter = require("./routes/auth");
 var indexRouter = require("./routes/index");
+const { navigation, authPath } = require("./configs/navigation");
 
 var app = express();
 database.connect();
 app.locals = {
   title: "My Awesome Website",
-  navigations: {
-    index: "/",
-    auth: {
-      login: "/auth/login",
-      register: "/auth/register",
-      resetPassword: "/auth/reset-password",
-      logout: "/auth/logout",
-    },
-  },
+  navigation: navigation,
 };
 
 // view engine setup
@@ -51,6 +44,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(helmet());
+app.use(responseMiddleware.respond);
 app.use(
   session({
     secret: SESSION_SECRET,
@@ -66,7 +60,6 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(responseMiddleware.respond);
 
 //# routes
 // apis
@@ -75,6 +68,7 @@ app.use("/api/test", testApi);
 // web
 app.use("/auth", authRouter);
 app.use("/",isAuthenticated, indexRouter);
+
 
 // middleware error handling
 app.use(errorHandlingMiddleware.catchNotFound);

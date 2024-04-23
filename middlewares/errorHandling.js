@@ -22,19 +22,20 @@ function errorHandler(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
-  res.locals.title = "Error"
-
-  const statusCode = err.status || 500;
-  var errorView = getErrorView(statusCode);
+  res.locals.title = "Error";
 
   const isApiRequest = req.originalUrl.startsWith("/api");
+  console.log(`isApiRequest::: ${isApiRequest}`);
   if (isApiRequest) {
-    res.apiError(err);
-  } else {
-    // render the error page
-    res.status(statusCode);
-    res.render(errorView, { layout: "layouts/empty" });
+    return res.apiError(err);
   }
+
+  
+  // render the error page
+  const statusCode = err.status || 500;
+  var errorView = getErrorView(statusCode);
+  res.status(statusCode);
+  res.render(errorView, { layout: "layouts/empty" });
 }
 
 module.exports = { catchNotFound, errorHandler };

@@ -1,8 +1,11 @@
+const { navigation } = require("../configs/navigation");
+
 const isAuthenticated = (req, res, next) => {
   console.log(`check isAuthenticated ::: ${req.isAuthenticated()}`)
 
-  if (!req.isAuthenticated()) {
-    return res.redirect("/auth/login");
+  const isApiRequest = req.originalUrl.startsWith("/api");
+  if (!req.isAuthenticated() && !isApiRequest) {
+    return res.redirect(navigation.auth.signIn);
   }
 
   next();

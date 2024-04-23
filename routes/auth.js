@@ -3,16 +3,17 @@ const router = express.Router();
 const controller = require("../controllers/auth");
 const passport = require("passport");
 const { isAuthenticated } = require("../middlewares/appAuth");
+const { navigation } = require("../configs/navigation");
 
 router
-  .get("/login", controller.loginPage)
-  .post("/login",passport.authenticate('local',{
-    successRedirect:"/",
-    failureRedirect:"/auth/login",
+  .get("/signin", controller.signInPage)
+  .post("/signin",passport.authenticate('local',{
+    successRedirect:navigation.index,
+    failureRedirect: navigation.auth.signIn,
     failureMessage:true
   }))
-  .get("/register", controller.registerPage)
-  .post("/register", controller.register)
+  .get("/signup", controller.signUpPage)
+  .post("/signup", controller.signUp)
   .get("/reset-password", controller.resetPasswordPage)
   .post("reset-password", controller.resetPassword)
   .get("/logout", controller.logout);
