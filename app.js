@@ -8,15 +8,16 @@ const helmet = require("helmet");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
-
 const { SESSION_SECRET } = process.env;
 
 const database = require("./configs/database");
-const {passport} = require('./configs/passport')
+const { passport } = require("./configs/passport");
 
-const { isAuthenticated } = require("./middlewares/appAuth");
 const responseMiddleware = require("./middlewares/response");
+const urlMiddleware = require("./middlewares/url");
 const errorHandlingMiddleware = require("./middlewares/errorHandling");
+const { authenticateToken } = require("./middlewares/apiAuth");
+const { isAuthenticated } = require("./middlewares/appAuth");
 
 const authApi = require("./apis/auth.api");
 const testApi = require("./apis/test.api");
@@ -43,8 +44,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(helmet());
 app.use(responseMiddleware.respond);
+app.use(urlMiddleware);
 app.use(
   session({
     secret: SESSION_SECRET,
@@ -54,7 +55,7 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60,
       httpOnly: true,
-      secure: false //[!WARNING] always set false for local server
+      secure: false, //[!WARNING] always set false for local server
     },
   })
 );
@@ -64,11 +65,11 @@ app.use(passport.session());
 //# routes
 // apis
 app.use("/api/auth", authApi);
-app.use("/api/test", testApi);
+app.use("/api/test", authenticateToken(), testApi);
 // web
 app.use("/auth", authRouter);
-app.use("/",isAuthenticated, indexRouter);
-
+app.use(isAuthenticated);
+app.use("/", indexRouter);
 
 // middleware error handling
 app.use(errorHandlingMiddleware.catchNotFound);

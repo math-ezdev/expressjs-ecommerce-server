@@ -16,7 +16,7 @@ const UserValidationSchema = joi.object({
 });
 
 const validateUser = (user) => {
-  return UserValidationSchema.validate(user);
+  return UserValidationSchema.validate(user, { allowUnknown: true });
 };
 
 const processUserValidation = (req, res, next) => {
@@ -27,7 +27,7 @@ const processUserValidation = (req, res, next) => {
   }
 
   req.validatedUser = req.body;
-  console.log(`req.validatedUser::: ${JSON.stringify(req.validatedUser)}`)
+  console.log(`req.validatedUser::: ${JSON.stringify(req.validatedUser)}`);
   next();
 };
 

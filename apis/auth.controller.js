@@ -4,13 +4,14 @@ const { generateToken } = require("../middlewares/apiAuth");
 const signUp = async (req, res, next) => {
   try {
     const user = req.validatedUser;
+    user.role = undefined;
 
     const newUser = new UserModel(user);
     await newUser.save();
 
     res.apiSuccess(newUser, "Registration successful.", 201);
   } catch (error) {
-     next(error);
+    next(error);
   }
 };
 
@@ -26,7 +27,7 @@ const signIn = async (req, res, next) => {
 
     res.apiSuccess({ accessToken, refreshToken }, "signin successful.");
   } catch (error) {
-     next(error);
+    next(error);
   }
 };
 
@@ -39,7 +40,7 @@ const refreshToken = async (req, res, next) => {
     });
     res.apiSuccess({ accessToken }, "Refresh token successful.");
   } catch (error) {
-     next(error);
+    next(error);
   }
 };
 
@@ -49,7 +50,7 @@ const logout = async (req, res, next) => {
       "Please clean up the refresh token stored on the user side."
     );
   } catch (error) {
-     next(error);
+    next(error);
   }
 };
 

@@ -43,9 +43,10 @@
 - Middleware Ejs Layout `npm i express-ejs-layouts`
   > [!NOTE]
   > On Android, tokens should be stored in Shared Preferences, KeyStore or Room Database
+- Middleware URL
+- Middleware Authorization
 
 <!--
-- Middleware Secure HTTP Reponse Headers `npm i helmet`
 - Middleware CORS : `npm i cors`
 -->
 
@@ -115,4 +116,4 @@ POST /api/auth/token
 ## Source
 
 [ExpressJs](https://expressjs.com)
-[Bootstrap Brain](https://bootstrapbrain.com/)
+[Bootstrap Template](https://bootstrapmade.com/demo/NiceAdmin/)

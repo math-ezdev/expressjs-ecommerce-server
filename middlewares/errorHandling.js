@@ -30,7 +30,6 @@ function errorHandler(err, req, res, next) {
     return res.apiError(err);
   }
 
-  
   // render the error page
   const statusCode = err.status || 500;
   var errorView = getErrorView(statusCode);

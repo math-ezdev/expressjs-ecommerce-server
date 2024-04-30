@@ -1,5 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
 
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhaWx3aW5kLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsImZpbGUiOiJzdHlsZS5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAdGFpbHdpbmQgYmFzZTtcclxuQHRhaWx3aW5kIGNvbXBvbmVudHM7XHJcbkB0YWlsd2luZCB1dGlsaXRpZXM7XHJcbiJdfQ== */
+a {
+  color: #00B7FF;
+}

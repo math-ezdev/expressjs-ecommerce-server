@@ -1,8 +1,7 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-const controller = require('../controllers/index');
-const { isAuthenticated } = require('../middlewares/appAuth');
+const controller = require("../controllers/index");
 
-router.get('/',isAuthenticated,controller.homePage)
+router.get("/", controller.dashboardPage);
 
 module.exports = router;

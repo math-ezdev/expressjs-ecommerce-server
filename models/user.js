@@ -1,11 +1,32 @@
 const { Schema, model } = require("mongoose");
 const ObjectId = Schema.Types.ObjectId;
 const bcrypt = require("bcrypt");
+const { ProductModel } = require("./product");
 
-const UserSchema = new Schema({
-  email: { type: String, unique: true },
-  password: { type: String },
-});
+const USER_ROLE = ["user", "admin"];
+
+const UserSchema = new Schema(
+  {
+    email: { type: String, unique: true },
+    password: { type: String },
+    first_name: { type: String },
+    last_name: { type: String },
+    avatar: {
+      type: String,
+      default:
+        "https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_1280.png",
+    },
+    phone_number: { type: String },
+    role: { type: String, default: USER_ROLE[0] },
+    carts: [
+      {
+        product: { type: ObjectId, ref: ProductModel.modelName },
+        quantity: Number,
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
 UserSchema.pre("save", async function (next) {
   const user = this;
