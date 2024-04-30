@@ -30,24 +30,23 @@
     └── .env
 ```
 
-- Library Environment Variables `npm i dotenv`
-- Library Database `npm i mongoose`
-- Library Password Hashing `npm i bcrypt`
-- [Middleware API Response](https://github.com/robbins23/express-starter)
-- Middleware Validation `npm i joi joi-password-complexity`
-- Library API Authentication `npm i jsonwebtoken`
-- Middleware Application Authentication `npm i express-session passport passport-local`
-  > [!WARNING]
-  > session({cookie:{secure: ?}}) // always set false for local server
-- Library Session Store `npm i connect-mongo`
-- Middleware Ejs Layout `npm i express-ejs-layouts`
-  > [!NOTE]
-  > On Android, tokens should be stored in Shared Preferences, KeyStore or Room Database
-- Middleware URL
-- Middleware Authorization
+- Setup `npm i dotenv`
+- Middleware ErrorHandling, Response, URL
+- Database `npm i mongoose`
+- Validation `npm i joi joi-password-complexity`
+- Authentication API `npm i bcrypt jsonwebtoken`
+- Authentication Application `npm i express-session passport passport-local connect-mongo`
+- Authorization
+- View Engine + Bootstrap Templates `npm i express-ejs-layouts`
+
+> [!WARNING]
+> session({cookie:{secure: ?}}) // always set false for local server
+
+> [!NOTE]
+> On Android, tokens should be stored in Shared Preferences, KeyStore or Room Database
 
 <!--
-- Middleware CORS : `npm i cors`
+- Learn more `npm i cors`
 -->
 
 ## API Response JSON
@@ -116,4 +115,5 @@ POST /api/auth/token
 ## Source
 
 [ExpressJs](https://expressjs.com)
+\
 [Bootstrap Template](https://bootstrapmade.com/demo/NiceAdmin/)
