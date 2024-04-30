@@ -7,14 +7,14 @@ function catchNotFound(req, res, next) {
 
 const getErrorView = (statusCode) => {
   if (statusCode === 404) {
-    return "pages/errors/404";
+    return "pages/error/404";
   }
 
   if (statusCode >= 400 || statusCode <= 499) {
-    return "pages/errors/4xx";
+    return "pages/error/4xx";
   }
 
-  return "pages/errors/5xx";
+  return "pages/error/5xx";
 };
 
 // error handler

@@ -12,18 +12,21 @@ const { SESSION_SECRET } = process.env;
 
 const database = require("./configs/database");
 const { passport } = require("./configs/passport");
+const { navigation } = require("./configs/navigation");
+const { USER_ROLE } = require("./models/user");
 
 const responseMiddleware = require("./middlewares/response");
 const urlMiddleware = require("./middlewares/url");
 const errorHandlingMiddleware = require("./middlewares/errorHandling");
 const { authenticateToken } = require("./middlewares/apiAuth");
-const { isAuthenticated } = require("./middlewares/appAuth");
+const { isAuthenticated, isAuthorizated } = require("./middlewares/appAuth");
 
 const authApi = require("./apis/auth.api");
 const testApi = require("./apis/test.api");
 const authRouter = require("./routes/auth");
 var indexRouter = require("./routes/index");
-const { navigation, authPath } = require("./configs/navigation");
+const userRouter = require('./routes/user')
+
 
 var app = express();
 database.connect();
@@ -69,7 +72,9 @@ app.use("/api/test", authenticateToken(), testApi);
 // web
 app.use("/auth", authRouter);
 app.use(isAuthenticated);
+app.use(isAuthorizated(USER_ROLE.slice(1)));
 app.use("/", indexRouter);
+app.use("/users", userRouter);
 
 // middleware error handling
 app.use(errorHandlingMiddleware.catchNotFound);
